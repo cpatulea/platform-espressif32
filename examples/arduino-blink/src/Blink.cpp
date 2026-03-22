@@ -6,6 +6,12 @@
 
 #include <Arduino.h>
 
+#ifdef FLAG_FROM_EXTRA_SCRIPTS
+#warning FLAG_FROM_EXTRA_SCRIPTS is defined - PASS
+#else
+#error FLAG_FROM_EXTRA_SCRIPTS is not defined - FAIL
+#endif
+
 // Set LED_BUILTIN if it is not defined by Arduino framework
 // #define LED_BUILTIN 2
 
