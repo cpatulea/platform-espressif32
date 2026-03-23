@@ -482,21 +482,7 @@ if ("arduino" in pioframework and "espidf" not in pioframework and
     env.AddPostAction("checkprogsize", silent_action)
 
     if IS_WINDOWS and not IS_INTEGRATION_DUMP:
-        from SCons.Platform import TempFileMunge
-
         check_and_warn_long_path_support()
-
-        # TempFileMunge for *COM-variables - set before SCons script
-        # env.Append in MCU-Script does not overwrite the wrapper
-        env["TEMPFILE"]       = TempFileMunge
-        env["TEMPFILEPREFIX"] = "@"
-        env["TEMPFILESUFFIX"] = ".rsp"
-        env["MAXLINELENGTH"]  = 4096  # increase the conservative default value of 2048
-
-        for _var in ["CCCOM", "CXXCOM", "ASCOM", "ASPPCOM", "LINKCOM"]:
-            if _var in env and "TEMPFILE" not in str(env[_var]):
-                env[_var] = "${TEMPFILE('%s')}" % env[_var]
-
 
     build_script_path = str(Path(FRAMEWORK_DIR) / "tools" / "pioarduino-build.py")
     SConscript(build_script_path)
