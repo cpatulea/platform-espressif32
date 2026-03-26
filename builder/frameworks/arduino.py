@@ -484,5 +484,8 @@ if ("arduino" in pioframework and "espidf" not in pioframework and
     if IS_WINDOWS and not IS_INTEGRATION_DUMP:
         check_and_warn_long_path_support()
 
+        print(f'[shortening debug] env[TEMPFILE] = {env["TEMPFILE"]}')
+        print(f'[shortening debug] env[MAXLINELENGTH] = {env["MAXLINELENGTH"]}')
+
     build_script_path = str(Path(FRAMEWORK_DIR) / "tools" / "pioarduino-build.py")
     SConscript(build_script_path)
