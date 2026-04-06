@@ -6,6 +6,11 @@
 
 #include <Arduino.h>
 
+#define STR_HELPER(x) #x
+#define STR(x) STR_HELPER(x)
+
+#pragma message "CONFIG_LOG_DEFAULT_LEVEL: " STR(CONFIG_LOG_DEFAULT_LEVEL)
+
 // Set LED_BUILTIN if it is not defined by Arduino framework
 // #define LED_BUILTIN 2
 
